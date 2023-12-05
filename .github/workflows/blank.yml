@@ -1,0 +1,19 @@
+name: ci
+
+on:
+  push:
+    branches: main
+
+jobs:
+  login:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - run: docker build -t ghcr.io/higa/python-app:1.0 . 
+      - run: docker push -t ghcr.io/higa/python-app:1.0 
+      - run: docker run  -t ghcr.io/higa/python-app:1.0 
