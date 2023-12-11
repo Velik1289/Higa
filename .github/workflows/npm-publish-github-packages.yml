@@ -17,7 +17,7 @@ jobs:
           regisry: ghcr.io
           username: ${{ github.actor}}
           password: ${{ secrets.GIHUB_TOKEN}}
-       - run: docker build -t ghcr.io/
+       - run: docker build -t ghcr.io/velik1289
        - run: docker push ghcr/io/velik1289
 
        - name: send telegram messange on push
